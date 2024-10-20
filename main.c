@@ -13,32 +13,27 @@ int main(int argc, char const *argv[])
     printf("Ingrese el numero de productos (maximo 10): ");
     scanf("%d", &numeroProductos);
 
-    LeernombresProductos(productos,precio,numeroProductos); 
-
-    //Procesos 
-    //Calcular el precio total de los productos
-    float total = CalcularprecioTotal(precio,numeroProductos); 
-    printf("\nEl precio total de los productos son --> %.2f",total);
-
-    //Calcular el promedio de los productos
-    float promedio = CalcularpromedioProductos(precio,numeroProductos); 
-    printf("\nEl precio promedio de todos los productos es --> %.2f",promedio); 
-
-    //Ver el producto mas Caro y Barato
-    int masCaro = ProductomasCaro(precio,numeroProductos); 
-    printf("\nEl producto mas Caro es --> %s", productos[masCaro]); 
-
-    int masBarato = ProductomasBarato(precio,numeroProductos);
-    printf("\nEl producto mas Barato es --> %s", productos[masBarato]); 
-
-    //En esta parte el usuario va a poder ver el producto que es y su precio automoticamente 
-    ImprimirnombreProducto(productos, precio, numeroProductos); 
+    if (numeroProductos > 1 && numeroProductos < 10)
+    {
+        LeernombresProductos(productos, precio,numeroProductos); 
+        float total = CalcularprecioTotal(precio,numeroProductos);
+        printf("\nEl precio total de los prodcutos ingresados --> %.2f",total); 
+        float promedio = CalcularpromedioProductos(precio,numeroProductos); 
+        printf("\nEl promedio de la compra total de los productos ingresados --> %.2f",promedio); 
+        int masCaro = ProductomasCaro(precio, numeroProductos); 
+        printf("\nEl producto mas Caro es --> %s",productos[masCaro]); 
+        int masBarato = ProductomasBarato(precio,numeroProductos); 
+        printf("\nEl producto mas Barato es --> %s", productos[masBarato]); 
+        ImprimirnombreProducto(productos, precio, numeroProductos); 
+        printf("\nIngrese el nombre del producto que desea bsucar: "); 
+        scanf("%s", productosBuscar); 
+        Buscarproducto(productos,precio,numeroProductos,productosBuscar); 
+    }
+    else
+    {
+        printf("\nEl numero de productos que ingreso no esta en el rango permitido para sus resultados");
+    }
     
-    //Aqui el usuario va a escribir el producto que quiere saber y su precio
-    printf("\nIngrese el nombre del producto que desea buscar: ");
-    scanf("%s", productosBuscar);
-    Buscarproducto(productos,precio,numeroProductos,productosBuscar);
-
     
     return 0; 
     
